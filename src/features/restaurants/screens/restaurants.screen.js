@@ -1,39 +1,48 @@
-import React from "react";
-import {
-  Text,
-  View,
-  Platform,
-  StatusBar,
-  StyleSheet,
-  SafeAreaView,
-} from "react-native";
-import { Searchbar } from "react-native-paper";
+import React, { useContext } from "react";
+import { FlatList, TouchableOpacity } from "react-native";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import styled from "styled-components/native";
+import { SafeView } from "../../../utils/safe-area.component";
+import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import { ActivityIndicator, MD2Colors } from "react-native-paper";
+import { Search } from "../components/search.component";
 
-const SafeView = styled(SafeAreaView)`
-  flex: 1;
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
-`;
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: { padding: 16 },
+})``;
 
-const SearchContainer = styled(View)`
-  padding: ${(props) => props.theme.space[3]};
-`;
+export const RestaurantScreen = ({ navigation }) => {
+  const { restaurants, isLoading } = useContext(RestaurantsContext);
 
-const RestaurantListContainer = styled(View)`
-  padding: ${(props) => props.theme.space[3]};
-  flex: 1;
-`;
-
-export const RestaurantScreen = () => {
   return (
     <SafeView>
-      <SearchContainer>
-        <Searchbar />
-      </SearchContainer>
-      <RestaurantListContainer>
-        <RestaurantInfoCard />
-      </RestaurantListContainer>
+      <Search />
+      {isLoading ? (
+        <ActivityIndicator
+          style={{ position: "absolute", top: "50%", left: "43%" }}
+          animating={true}
+          size={50}
+          color={MD2Colors.blue300}
+        />
+      ) : (
+        <RestaurantList
+          data={restaurants}
+          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("RestaurantDetail", {
+                    restaurant: item,
+                  })
+                }
+              >
+                <RestaurantInfoCard restaurant={item} />
+              </TouchableOpacity>
+            );
+          }}
+        />
+      )}
     </SafeView>
   );
 };
