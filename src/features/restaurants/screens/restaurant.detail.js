@@ -1,9 +1,9 @@
 import React from "react";
-import { Text, View } from "react-native";
-import { SafeView } from "../../../utils/safe-area.component";
-import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
+import { RestaurantInfoCard } from "../../restaurants/components/restaurant-info-card.component";
 
-export const RestaurantDetail = ({ route }) => {
+import { SafeView } from "../../../utils/safe-area.component";
+
+export const RestaurantDetailScreen = ({ route }) => {
   const { restaurant } = route.params;
   return (
     <SafeView>
