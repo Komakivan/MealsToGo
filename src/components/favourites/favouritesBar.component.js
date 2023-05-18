@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { ScrollView, TouchableOpacity } from "react-native";
 import { Spacer } from "../spacer/spacer.component";
 import { CompactRestaurantInfo } from "../restaurant/compact-restaurant-info.component";
-import { Text } from "../typography/text.component";
+import { Text } from "../typography/typography.component";
 
 const FavouritesWrapper = styled.View`
   padding: 10px;
