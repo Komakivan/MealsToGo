@@ -8,10 +8,7 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { RestaurantContextProvider } from "./src/services/restaurants/restaurants.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
 import { Navigation } from "./src/infrustructure/navigation";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 export default function App() {
@@ -32,13 +29,7 @@ export default function App() {
       <PaperProvider>
         <ThemeProvider theme={theme}>
           <AuthenticationContextProvider>
-            <FavouritesContextProvider>
-              <LocationContextProvider>
-                <RestaurantContextProvider>
-                  <Navigation />
-                </RestaurantContextProvider>
-              </LocationContextProvider>
-            </FavouritesContextProvider>
+            <Navigation />
           </AuthenticationContextProvider>
         </ThemeProvider>
       </PaperProvider>

@@ -4,7 +4,7 @@ import { LocationContext } from "../location/location.context";
 
 export const RestaurantsContext = createContext();
 
-export const RestaurantContextProvider = ({ children }) => {
+export const RestaurantsContextProvider = ({ children }) => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   const [error, setError] = useState(null);

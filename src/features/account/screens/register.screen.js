@@ -24,11 +24,6 @@ export const RegisterScreen = ({ navigation }) => {
       <AccountCover />
       <Title>Register</Title>
       <AccountContainer>
-        {error && (
-          <ErrorContainer>
-            <Text variant="error">{error}</Text>
-          </ErrorContainer>
-        )}
         <Spacer size="medium">
           <AuthInput
             label="E-mail"
@@ -49,7 +44,7 @@ export const RegisterScreen = ({ navigation }) => {
             textContentType="password"
             secureTextEntry
             autoCapitalize="none"
-            onChangeText={(pass) => setPassword(pass)}
+            onChangeText={(pass1) => setPassword(pass1)}
           />
         </Spacer>
         <Spacer size="medium">
@@ -60,15 +55,20 @@ export const RegisterScreen = ({ navigation }) => {
             textContentType="password"
             secureTextEntry
             autoCapitalize="none"
-            onChangeText={(pass) => setRepeatPassword(pass)}
+            onChangeText={(pass2) => setRepeatPassword(pass2)}
           />
         </Spacer>
+        {error && (
+          <ErrorContainer>
+            <Text variant="error">{error}</Text>
+          </ErrorContainer>
+        )}
         {!isLoading ? (
           <Spacer size="large">
             <AuthButton
               icon="email"
               mode="contained"
-              onPress={() => onRegister(email, password)}
+              onPress={() => onRegister(email, password, repeatPassword)}
             >
               Register
             </AuthButton>

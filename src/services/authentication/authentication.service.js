@@ -22,10 +22,11 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 export const auth = getAuth();
 
-export const CreateUserwithEmailandPassword = async (email, password) => {
+export const createUserwithEmailandPassword = async (email, password) => {
   if (!email || !password) {
     return;
   }
+
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
@@ -39,6 +40,6 @@ export const SigninAuthUser = async (email, password) => {
 
 export const signUserOut = async () => await signOut(auth);
 
-export const onAuthStateChangedListener = (callback) => {
-  onAuthStateChanged(auth, callback);
+export const onAuthStateChangedListener = async (callback) => {
+  await onAuthStateChanged(auth, callback);
 };
